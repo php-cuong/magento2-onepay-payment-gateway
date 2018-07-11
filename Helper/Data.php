@@ -186,6 +186,27 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
+     * Retrieve the base amount paid
+     *
+     * @param \Magento\Sales\Model\Order $orderObject
+     * @param string $amount
+     * @return string
+     */
+    public function getBaseAmountPaid($orderObject, $amount)
+    {
+        $baseCurrencyCode = $orderObject->getBaseCurrencyCode();
+        switch ($baseCurrencyCode) {
+            case 'VND':
+                return $amount;
+                break;
+            default:
+                $currencyRate = $this->_storeManager->getStore()->getBaseCurrency()->getRate('VND');
+                return round($amount/$currencyRate, 0);
+                break;
+        }
+    }
+
+    /**
      * Retrieve the locale
      *
      * @return string
@@ -197,5 +218,30 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             return 'vn';
         }
         return 'en';
+    }
+
+    /**
+     * Retrieve the amount paid by current store
+     *
+     * @param \Magento\Sales\Model\Order $orderObject
+     * @param string $amount
+     * @return string
+     */
+    public function getAmountPaid($orderObject, $amount)
+    {
+        $baseCurrencyCode = $orderObject->getBaseCurrencyCode();
+        switch ($baseCurrencyCode) {
+            case 'VND':
+                return $amount;
+                break;
+            default:
+                $orderCurrencyCode = $orderObject->getOrderCurrencyCode();
+                if ($orderCurrencyCode == 'VND') {
+                    return $amount;
+                }
+                $currencyRate = $this->_storeManager->getStore()->getBaseCurrency()->getRate('VND');
+                return round($amount/$currencyRate, 0);
+                break;
+        }
     }
 }

@@ -81,7 +81,12 @@ class Pay extends \Magento\Framework\App\Action\Action
         $order = $this->orderFactory->create()->loadByIncrementId($incrementId);
         if ($order->getId() && $this->checkoutSession->getLastOrderId() == $order->getId() && $hash == strtoupper($responseHash)) {
             $amount = $this->getRequest()->getParam('vpc_Amount', '0');
-            $order = $order->setTotalPaid(floatval($amount)/100);
+            $amount = floatval($amount)/100;
+            $order = $order->setTotalPaid(
+                $this->onePayHelperData->getAmountPaid($order, $amount)
+            )->setBaseTotalPaid(
+                $this->onePayHelperData->getBaseAmountPaid($order, $amount)
+            );
             try {
                 if ($vpcTxnResponseCode == '0') {
                     $order = $order->setStatus(\Magento\Sales\Model\Order::STATE_PAYMENT_REVIEW);
