@@ -33,6 +33,31 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     const ONEPAY_INTERNATIONAL_CARD_HASH_CODE = 'payment/onepay_international/hash_code';
 
     /**
+     * @var \Magento\Framework\Locale\ResolverInterface
+     */
+    protected $_localeResolver;
+
+    /**
+     * @var \Magento\Framework\Locale\ResolverInterface
+     */
+    protected $_storeManager;
+
+    /**
+     * @param \Magento\Framework\App\Helper\Context $context
+     * @param \Magento\Framework\Locale\ResolverInterface $localeResolver
+     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+     */
+    public function __construct(
+        \Magento\Framework\App\Helper\Context $context,
+        \Magento\Framework\Locale\ResolverInterface $localeResolver,
+        \Magento\Store\Model\StoreManagerInterface $storeManager
+    ) {
+        $this->_localeResolver = $localeResolver;
+        $this->_storeManager = $storeManager;
+        parent::__construct($context);
+    }
+
+    /**
      * Retrieve the OnePay Domestic card payment URL
      *
      * @return string
@@ -134,5 +159,43 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             self::ONEPAY_INTERNATIONAL_CARD_HASH_CODE,
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
+    }
+
+    /**
+     * Retrieve the total paid
+     *
+     * @param \Magento\Sales\Model\Order $orderObject
+     * @return string
+     */
+    public function getTotalPaid($orderObject)
+    {
+        $baseCurrencyCode = $orderObject->getBaseCurrencyCode();
+        switch ($baseCurrencyCode) {
+            case 'VND':
+                return $orderObject->getBaseGrandTotal();
+                break;
+            default:
+                $orderCurrencyCode = $orderObject->getOrderCurrencyCode();
+                if ($orderCurrencyCode == 'VND') {
+                    return $orderObject->getGrandTotal();
+                }
+                $currencyRate = $this->_storeManager->getStore()->getBaseCurrency()->getRate('VND');
+                return round($orderObject->getGrandTotal() * $currencyRate, 0);
+                break;
+        }
+    }
+
+    /**
+     * Retrieve the locale
+     *
+     * @return string
+     */
+    public function getLocale()
+    {
+        $locale = $this->_localeResolver->getLocale();
+        if ($locale == 'vi_VN') {
+            return 'vn';
+        }
+        return 'en';
     }
 }

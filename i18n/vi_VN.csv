@@ -17,7 +17,7 @@
 "Invalid card info.","Thông tin thẻ không đúng.",module,PHPCuong_OnePay
 "Invalid OTP.","Mã OTP không đúng.",module,PHPCuong_OnePay
 "Transaction timeout.","Quá thời gian thanh toán.",module,PHPCuong_OnePay
-"User canceled transaction.","User canceled transaction.",module,PHPCuong_OnePay
+"User canceled transaction.","Người dùng hủy bỏ giao dịch.",module,PHPCuong_OnePay
 "Transaction was failed.","Người dùng hủy bỏ giao dịch.",module,PHPCuong_OnePay
 "Order ID no longer exist.","Mã đơn hàng không tồn tại.",module,PHPCuong_OnePay
 "Retrieve the payment URL successfully.","Truy xuất URL thanh toán thành công.",module,PHPCuong_OnePay

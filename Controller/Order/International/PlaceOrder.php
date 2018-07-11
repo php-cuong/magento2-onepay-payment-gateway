@@ -39,28 +39,20 @@ class PlaceOrder extends \Magento\Framework\App\Action\Action
     protected $resultJsonFactory;
 
     /**
-     * @var \Magento\Framework\Locale\ResolverInterface
-     */
-    protected $_localeResolver;
-
-    /**
      * @param \Magento\Framework\App\Action\Context $context
      * @param \Magento\Sales\Model\OrderFactory $orderFactory
      * @param \PHPCuong\OnePay\Helper\Data $onePayHelperData
      * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
-     * @param \Magento\Framework\Locale\ResolverInterface $localeResolver
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Sales\Model\OrderFactory $orderFactory,
         \PHPCuong\OnePay\Helper\Data $onePayHelperData,
-        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
-        \Magento\Framework\Locale\ResolverInterface $localeResolver
+        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
     ) {
         $this->orderFactory = $orderFactory;
         $this->onePayHelperData = $onePayHelperData;
         $this->resultJsonFactory = $resultJsonFactory;
-        $this->_localeResolver = $localeResolver;
         parent::__construct($context);
     }
 
@@ -111,7 +103,7 @@ class PlaceOrder extends \Magento\Framework\App\Action\Action
             $returnUrl = $this->_url->getUrl('onepay_payment_portal/order/international_pay');
             $md5HashData = '';
             $incrementId = $orderObject->getIncrementId();
-            $locale = ($this->getLocate() == 'vi_VN') ? 'vi' : 'en';
+            $locale = $this->onePayHelperData->getLocale();
             $paymentUrl .= '?';
             $params = [
                 'vpc_Version' => '2',
@@ -120,9 +112,9 @@ class PlaceOrder extends \Magento\Framework\App\Action\Action
                 'vpc_Merchant' => $merchantId,
                 'vpc_Locale' => $locale,
                 'vpc_ReturnURL' => $returnUrl,
-                'vpc_MerchTxnRef'=> 'precita'.$incrementId,
+                'vpc_MerchTxnRef'=> 'phpcuong'.$incrementId,
                 'vpc_OrderInfo'=> $incrementId,
-                'vpc_Amount' => round($orderObject->getBaseGrandTotal()*100, 0),
+                'vpc_Amount' => round($this->onePayHelperData->getTotalPaid($orderObject)*100, 0),
                 'vpc_TicketNo' => $orderObject->getRemoteIp(),
                 'AgainLink' => $this->_url->getUrl('checkout'),
                 'Title' => __('OnePAY Payment Gateway')
@@ -143,15 +135,5 @@ class PlaceOrder extends \Magento\Framework\App\Action\Action
             return $paymentUrl;
         }
         return null;
-    }
-
-    /**
-     * Retrieve the locate
-     *
-     * @return string
-     */
-    private function getLocate()
-    {
-        return $this->_localeResolver->getLocale();
     }
 }
