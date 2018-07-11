@@ -1,10 +1,10 @@
 # OnePay Payment Gateway for Magento 2
 In this module, I integrated two payments gateway of OnePay, that is Domestic ATM Card and International Card.
 
-## How to install or upgrade this extension?
+## How to install this extension?
  + Under the root of your website, please run the command lines bellowing:
     - Before installing this extension, make sure that you have installed the PHPCuong_Core module, If you don't install this module yet, please install it by running the command line: **composer require php-cuong/magento2-module-core**
-    - Install the PHPCuong_CustomerAddressAutocomplete module:
+    - Install the PHPCuong_OnePay module:
     - **composer require php-cuong/magento2-onepay-payment-gateway**
     - **php bin/magento setup:upgrade**
     - **php bin/magento setup:static-content:deploy**
