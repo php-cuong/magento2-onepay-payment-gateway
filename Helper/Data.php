@@ -180,7 +180,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                     return $orderObject->getGrandTotal();
                 }
                 $currencyRate = $this->_storeManager->getStore()->getBaseCurrency()->getRate('VND');
-                return round($orderObject->getGrandTotal() * $currencyRate, 0);
+                if ($currencyRate) {
+                    return round($orderObject->getGrandTotal() * $currencyRate, 0);
+                }
+                return $orderObject->getGrandTotal();
                 break;
         }
     }
@@ -201,7 +204,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                 break;
             default:
                 $currencyRate = $this->_storeManager->getStore()->getBaseCurrency()->getRate('VND');
-                return round($amount/$currencyRate, 0);
+                if ($currencyRate) {
+                    return round($amount/$currencyRate, 0);
+                }
+                return $amount;
                 break;
         }
     }
@@ -232,6 +238,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $baseCurrencyCode = $orderObject->getBaseCurrencyCode();
         switch ($baseCurrencyCode) {
             case 'VND':
+                $orderCurrencyCode = $orderObject->getOrderCurrencyCode();
+                if ($orderCurrencyCode == 'VND') {
+                    return $amount;
+                }
+                $currencyRate = $this->_storeManager->getStore()->getBaseCurrency()->getRate($orderCurrencyCode);
+                if ($currencyRate) {
+                    return round($amount * $currencyRate, 0);
+                }
                 return $amount;
                 break;
             default:
@@ -240,7 +254,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                     return $amount;
                 }
                 $currencyRate = $this->_storeManager->getStore()->getBaseCurrency()->getRate('VND');
-                return round($amount/$currencyRate, 0);
+                if ($currencyRate) {
+                    return round($amount / $currencyRate, 0);
+                }
+                return $amount;
                 break;
         }
     }

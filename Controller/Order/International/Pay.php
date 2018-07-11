@@ -80,15 +80,15 @@ class Pay extends \Magento\Framework\App\Action\Action
         $incrementId = $this->getRequest()->getParam('vpc_OrderInfo', '000000000');
         $order = $this->orderFactory->create()->loadByIncrementId($incrementId);
         if ($order->getId() && $this->checkoutSession->getLastOrderId() == $order->getId() && $hash == strtoupper($responseHash)) {
-            $amount = $this->getRequest()->getParam('vpc_Amount', '0');
-            $amount = floatval($amount)/100;
-            $order = $order->setTotalPaid(
-                $this->onePayHelperData->getAmountPaid($order, $amount)
-            )->setBaseTotalPaid(
-                $this->onePayHelperData->getBaseAmountPaid($order, $amount)
-            );
             try {
                 if ($vpcTxnResponseCode == '0') {
+                    $amount = $this->getRequest()->getParam('vpc_Amount', '0');
+                    $amount = floatval($amount)/100;
+                    $order = $order->setTotalPaid(
+                        $this->onePayHelperData->getAmountPaid($order, $amount)
+                    )->setBaseTotalPaid(
+                        $this->onePayHelperData->getBaseAmountPaid($order, $amount)
+                    );
                     $order = $order->setStatus(\Magento\Sales\Model\Order::STATE_PAYMENT_REVIEW);
                     $this->messageManager->addSuccess(__('You paid by International Card via OnePay payment gateway successfully.'));
                     $path = 'checkout/onepage/success';
