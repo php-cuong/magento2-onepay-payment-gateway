@@ -112,7 +112,7 @@ class Pay extends \Magento\Framework\App\Action\Action
     {
         switch ($responseCode) {
             case '1' :
-                $result = __('Bank Declined.');
+                $result = __('Bank Declined Transaction.');
                 break;
             case '3' :
                 $result = __('Merchant no longer exist.');
@@ -127,7 +127,7 @@ class Pay extends \Magento\Framework\App\Action\Action
                 $result = __('Invalid currency code.');
                 break;
             case '7' :
-                $result = __('Unspecified Failure');
+                $result = __('Unspecified Failure.');
                 break;
             case '8' :
                 $result = __('Invalid card Number.');

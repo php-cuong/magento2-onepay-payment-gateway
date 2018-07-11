@@ -1,0 +1,42 @@
+"You paid by domestic ATM card via OnePay payment gateway successfully.","Bạn thanh toán bằng thẻ ATM nội địa qua cổng thanh toán OnePay thành công.",module,PHPCuong_OnePay
+"Pay by OnePay payment gateway failed, %1","Thanh toán qua cổng thanh toán OnePay không thành công, %1",module,PHPCuong_OnePay
+"Pay by OnePay payment gateway failed.","Thanh toán qua cổng thanh toán OnePay không thành công.",module,PHPCuong_OnePay
+"Bank Declined.","Ngân hàng từ chối giao dịch.",module,PHPCuong_OnePay
+"Merchant no longer exist.","Mã đơn vị chấp nhận thẻ không tồn tại.",module,PHPCuong_OnePay
+"Invalid access code.","Mã truy cập không hợp lệ.",module,PHPCuong_OnePay
+"Invalid amount.","Số tiền thanh toán không hợp lệ.",module,PHPCuong_OnePay
+"Invalid currency code.","Mã tiền tệ không tồn tại.",module,PHPCuong_OnePay
+"Unspecified Failure.","Lỗi không xác định.",module,PHPCuong_OnePay
+"Invalid card Number.","Số thẻ không đúng.",module,PHPCuong_OnePay
+"Invalid card name.","Tên chủ thẻ không đúng.",module,PHPCuong_OnePay
+"Expired Card.","Thẻ đã hết hạn hoặc Thẻ đã bị khóa.",module,PHPCuong_OnePay
+"Card Not Registered Service Internet Banking.","Thẻ chưa đăng ký sử dụng dịch vụ Internet Banking.",module,PHPCuong_OnePay
+"Invalid card date.","Ngày phát hành hoặc Ngày hết hạn không đúng.",module,PHPCuong_OnePay
+"Exist Amount.","Số tiền vượt quá hạn mức thanh toán.",module,PHPCuong_OnePay
+"Insufficient fund.","Số tiền không đủ để thanh toán.",module,PHPCuong_OnePay
+"Invalid card info.","Thông tin thẻ không đúng.",module,PHPCuong_OnePay
+"Invalid OTP.","Mã OTP không đúng.",module,PHPCuong_OnePay
+"Transaction timeout.","Quá thời gian thanh toán.",module,PHPCuong_OnePay
+"User canceled transaction.","User canceled transaction.",module,PHPCuong_OnePay
+"Transaction was failed.","Người dùng hủy bỏ giao dịch.",module,PHPCuong_OnePay
+"Order ID no longer exist.","Mã đơn hàng không tồn tại.",module,PHPCuong_OnePay
+"Retrieve the payment URL successfully.","Truy xuất URL thanh toán thành công.",module,PHPCuong_OnePay
+"OnePAY Payment Gateway","Cổng thanh toán trực tuyến OnePay",module,PHPCuong_OnePay
+"You paid by International Card via OnePay payment gateway successfully.","Bạn thanh toán bằng Thẻ quốc tế qua cổng thanh toán OnePay thành công.",module,PHPCuong_OnePay
+"Transaction status is unknown.","Trạng thái giao dịch không xác định.",module,PHPCuong_OnePay
+"Issuer Bank declined the transaction. Please contact Issuer Bank.","Đơn vị phát hành thẻ đã từ chối giao dịch. Vui lòng liên hệ lại với bên ngân hàng để được hỗ trợ.",module,PHPCuong_OnePay
+"Bank Declined Transaction.","Ngân hàng phát hành thẻ từ chối giao dịch, do 1 trong những nguyên nhân sau: Số dư không đủ thanh toán , thẻ chưa đăng ký dịch vụ thanh toán trực tuyến, thẻ hết hạn sử dụng.",module,PHPCuong_OnePay
+"Issuer Bank declined the transaction.","Cổng thanh toán OnePay không nhận được kết quả trả về từ ngân hàng phát hành thẻ.",module,PHPCuong_OnePay
+"Your card is expired.","Thẻ hết hạn sử dụng.",module,PHPCuong_OnePay
+"Your credit account is insufficient funds.","Thẻ không đủ hạn mức hoặc tài khoản không đủ số dư thanh toán.",module,PHPCuong_OnePay
+"Error from Issuer Bank.","Lỗi từ ngân hàng phát hành thẻ.",module,PHPCuong_OnePay
+"Error when processing transaction.","Lỗi phát sinh trong quá trình xử lý giao dịch.",module,PHPCuong_OnePay
+"Issuer Bank does not support E-commerce transaction.","Ngân hàng phát hành thẻ không hỗ trợ giao dịch Internet.",module,PHPCuong_OnePay
+"Cannot authenticated by 3D-Secure Program. Please contact Issuer Bank.","Không xác thực được 3D-Secure. Liên hệ ngân hàng phát hành thẻ để được hỗ trợ.",module,PHPCuong_OnePay
+"Wrong CSC entered or Issuer Bank declined the transaction. Please contact Issuer Bank.","Bạn nhập sai CSC hoặc thẻ vượt quá hạn mức thanh toán.",module,PHPCuong_OnePay
+"3D Secure Authentication Failed.","Không xác thực được 3D.",module,PHPCuong_OnePay
+"You need to have the domestic card information and Internet Banking account.","Bạn phải có thông tin thẻ và tài khoản Internet Banking.",module,PHPCuong_OnePay
+"The banks list accepted.","Ngân hàng hỗ trợ thanh toán.",module,PHPCuong_OnePay
+"The credit and debit cards accepted.","Thẻ tín dụng và ghi nợ hỗ trợ thanh toán.",module,PHPCuong_OnePay
+"OnePay Domestic ATM Card","Thanh toán online qua cổng OnePay bằng thẻ ATM nội địa",module,PHPCuong_OnePay
+"OnePay International Card (Visa, MasterCard)","Thanh toán online qua cổng OnePay bằng thẻ quốc tế",module,PHPCuong_OnePay
