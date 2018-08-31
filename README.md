@@ -1,5 +1,5 @@
 # OnePay Payment Gateway for Magento 2
-In this module, I integrated two payments gateway of OnePay, that is Domestic ATM Card and International Card.
+In this module, I integrated two payments gateway of OnePay, that is the Domestic ATM Card and International Card.
 
 ## How to install this extension?
  + Under the root of your website, please run the command lines bellowing:
