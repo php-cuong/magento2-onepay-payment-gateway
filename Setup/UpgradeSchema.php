@@ -14,40 +14,52 @@
  * version in the future.
  *
  * @category    PHPCuong
- * @package     PHPCuong_OnePay
+ * @package     PHPCuong_CityDropdown
  * @copyright   Copyright (c) 2018-2019 GiaPhuGroup Co., Ltd. All rights reserved. (http://www.giaphugroup.com/)
  * @license     https://www.giaphugroup.com/LICENSE.txt
  */
 
 namespace PHPCuong\OnePay\Setup;
 
-use Magento\Framework\Setup\UpgradeDataInterface;
+use Magento\Framework\Setup\UpgradeSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
-use Magento\Framework\Setup\ModuleDataSetupInterface;
+use Magento\Framework\Setup\SchemaSetupInterface;
 
-class UpgradeData implements UpgradeDataInterface
+class UpgradeSchema implements UpgradeSchemaInterface
 {
     /**
      * {@inheritdoc}
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
-    public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
+    public function upgrade(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
         $setup->startSetup();
 
+        if (version_compare($context->getVersion(), '2.1.1', '<')) {
+            $this->addOrderStatusOnePayPending($setup);
+        }
+
+        $setup->endSetup();
+    }
+
+    /**
+     * Add the order payment status OnePay pending
+     *
+     * @param SchemaSetupInterface $setup
+     *
+     * @return void
+     */
+    private function addOrderStatusOnePayPending(SchemaSetupInterface $setup)
+    {
         /**
          * Install order statuses from config
          */
         $data = [];
         $statuses = [
-            'payment_onepay_failed' => __('OnePay Failed'),
             'payment_onepay_pending' => __('OnePay Pending')
         ];
         foreach ($statuses as $code => $info) {
             $data[] = ['status' => $code, 'label' => $info];
         }
         $setup->getConnection()->insertOnDuplicate($setup->getTable('sales_order_status'), $data);
-
-        $setup->endSetup();
     }
 }

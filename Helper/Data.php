@@ -27,10 +27,16 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     const ONEPAY_DOMESTIC_CARD_ACCESS_CODE = 'payment/onepay_domestic/access_code';
     const ONEPAY_DOMESTIC_CARD_MERCHANT_ID = 'payment/onepay_domestic/merchant_id';
     const ONEPAY_DOMESTIC_CARD_HASH_CODE = 'payment/onepay_domestic/hash_code';
+    const ONEPAY_DOMESTIC_CARD_QUERYDR_URL = 'payment/onepay_domestic/querydr_url';
+    const ONEPAY_DOMESTIC_CARD_QUERYDR_USER = 'payment/onepay_domestic/querydr_user';
+    const ONEPAY_DOMESTIC_CARD_QUERYDR_PASSWORD = 'payment/onepay_domestic/querydr_password';
     const ONEPAY_INTERNATIONAL_CARD_PAYMENT_URL = 'payment/onepay_international/payment_url';
     const ONEPAY_INTERNATIONAL_CARD_ACCESS_CODE = 'payment/onepay_international/access_code';
     const ONEPAY_INTERNATIONAL_CARD_MERCHANT_ID = 'payment/onepay_international/merchant_id';
     const ONEPAY_INTERNATIONAL_CARD_HASH_CODE = 'payment/onepay_international/hash_code';
+    const ONEPAY_INTERNATIONAL_CARD_QUERYDR_URL = 'payment/onepay_international/querydr_url';
+    const ONEPAY_INTERNATIONAL_CARD_QUERYDR_USER = 'payment/onepay_international/querydr_user';
+    const ONEPAY_INTERNATIONAL_CARD_QUERYDR_PASSWORD = 'payment/onepay_international/querydr_password';
 
     /**
      * @var \Magento\Framework\Locale\ResolverInterface
@@ -110,6 +116,45 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
+     * Retrieve the OnePay Domestic card QueryDR URL
+     *
+     * @return string
+     */
+    public function getDomesticCardQueryDrUrl()
+    {
+        return $this->scopeConfig->getValue(
+            self::ONEPAY_DOMESTIC_CARD_QUERYDR_URL,
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Retrieve the OnePay Domestic card QueryDR user
+     *
+     * @return string
+     */
+    public function getDomesticCardQueryDrUser()
+    {
+        return $this->scopeConfig->getValue(
+            self::ONEPAY_DOMESTIC_CARD_QUERYDR_USER,
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Retrieve the OnePay Domestic card QueryDR password
+     *
+     * @return string
+     */
+    public function getDomesticCardQueryDrPassword()
+    {
+        return $this->scopeConfig->getValue(
+            self::ONEPAY_DOMESTIC_CARD_QUERYDR_PASSWORD,
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
      * Retrieve the OnePay International card payment URL
      *
      * @return string
@@ -157,6 +202,45 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
         return $this->scopeConfig->getValue(
             self::ONEPAY_INTERNATIONAL_CARD_HASH_CODE,
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Retrieve the OnePay International card QueryDR URL
+     *
+     * @return string
+     */
+    public function getInternationalCardQueryDrUrl()
+    {
+        return $this->scopeConfig->getValue(
+            self::ONEPAY_INTERNATIONAL_CARD_QUERYDR_URL,
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Retrieve the OnePay International card QueryDR user
+     *
+     * @return string
+     */
+    public function getInternationalCardQueryDrUser()
+    {
+        return $this->scopeConfig->getValue(
+            self::ONEPAY_INTERNATIONAL_CARD_QUERYDR_USER,
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Retrieve the OnePay International card QueryDR password
+     *
+     * @return string
+     */
+    public function getInternationalCardQueryDrPassword()
+    {
+        return $this->scopeConfig->getValue(
+            self::ONEPAY_INTERNATIONAL_CARD_QUERYDR_PASSWORD,
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
     }

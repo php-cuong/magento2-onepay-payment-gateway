@@ -20,6 +20,10 @@
  * @license     https://www.giaphugroup.com/LICENSE.txt
  */
 -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="PHPCuong_OnePay" setup_version="2.1.1" />
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="index">
+        <job name="phpcuong_onepay_update_order_status_by_querydr" instance="PHPCuong\OnePay\Cron\QueryDr" method="execute">
+            <schedule>* * * * *</schedule>
+        </job>
+    </group>
 </config>
