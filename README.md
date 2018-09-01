@@ -3,8 +3,8 @@ In this module, I integrated two payments gateway of OnePay, that is the Domesti
 
 ## How to install this extension?
  + Under the root of your website, please run the command lines bellowing:
-    - Before installing this extension, make sure that you have installed the PHPCuong_Core module, If you don't install this module yet, please install it by running the command line: **composer require php-cuong/magento2-module-core**
-    - Install the PHPCuong_OnePay module:
+    - **composer remove php-cuong/magento2-module-core**
+    - **composer require php-cuong/magento2-module-core**
     - **composer require php-cuong/magento2-onepay-payment-gateway**
     - **php bin/magento setup:upgrade**
     - **php bin/magento setup:static-content:deploy**

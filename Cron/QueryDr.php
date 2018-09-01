@@ -150,11 +150,12 @@ class QueryDr
                         $this->orderFactory->create()->loadByIncrementId($orderId)->setStatus('payment_onepay_pending')->save();
                         $this->logger->critical('Updated the status of order Increment ID: '.$orderId.' to "OnePay Pending"');
                     } else {
-                        if ($orderInfo == $orderId) {
-                            $this->orderFactory->create()->loadByIncrementId($orderId)->setStatus('payment_onepay_failed')->save();
-                            $this->logger->critical('Updated the status of order Increment ID: '.$orderId.' to "OnePay Failed"');
-                        } else {
-                            $this->logger->critical('Error could not find order Increment ID: '.$orderId.' on OnePay Payment Gateway');
+                        $this->orderFactory->create()->loadByIncrementId($orderId)->setStatus('payment_onepay_failed')->save();
+                        $this->logger->critical('Updated the status of order Increment ID: '.$orderId.' to "OnePay Failed"');
+                        if ($orderInfo != $orderId) {
+                            $message = 'Error could not find order Increment ID: '.$orderId.' on OnePay Payment Gateway';
+                            $this->logger->critical($message);
+                            $this->orderFactory->create()->loadByIncrementId($orderId)->addStatusHistoryComment($message)->setIsCustomerNotified(false)->setEntityName('order')->save();
                         }
                     }
                 } catch (\Exception $e) {
@@ -222,11 +223,12 @@ class QueryDr
                         )->save();
                         $this->logger->critical('Updated the status of order Increment ID: '.$orderId.' to '.\Magento\Sales\Model\Order::STATE_PAYMENT_REVIEW);
                     } else {
-                        if ($orderInfo == $orderId) {
-                            $this->orderFactory->create()->loadByIncrementId($orderId)->setStatus('payment_onepay_failed')->save();
-                            $this->logger->critical('Updated the status of order Increment ID: '.$orderId.' to "OnePay Failed"');
-                        } else {
-                            $this->logger->critical('Error could not find order Increment ID: '.$orderId.' on OnePay Payment Gateway');
+                        $this->orderFactory->create()->loadByIncrementId($orderId)->setStatus('payment_onepay_failed')->save();
+                        $this->logger->critical('Updated the status of order Increment ID: '.$orderId.' to "OnePay Failed"');
+                        if ($orderInfo != $orderId) {
+                            $message = 'Error could not find order Increment ID: '.$orderId.' on OnePay Payment Gateway';
+                            $this->logger->critical($message);
+                            $this->orderFactory->create()->loadByIncrementId($orderId)->addStatusHistoryComment($message)->setIsCustomerNotified(false)->setEntityName('order')->save();
                         }
                     }
                 } catch (\Exception $e) {
